@@ -8,6 +8,7 @@ namespace Ejercicio1.Models
         {
         }
         public DbSet<Autor> Autor { get; set; }
+        public DbSet<Libro> Libro { get; set; }
 
 
     }
