@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 namespace Ejercicio1.Models
 {
-    public class libro
+    public class Libro
     {
         [Key]
         public int Id { get; set; }
