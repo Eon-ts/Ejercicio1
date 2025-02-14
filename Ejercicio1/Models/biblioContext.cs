@@ -7,6 +7,8 @@ namespace Ejercicio1.Models
         public biblioContext(DbContextOptions<biblioContext> options) : base(options)
         {
         }
+        public DbSet<Autor> Autor { get; set; }
+
 
     }
 }
