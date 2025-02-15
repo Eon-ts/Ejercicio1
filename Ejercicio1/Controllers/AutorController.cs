@@ -29,6 +29,7 @@ namespace Ejercicio1.Controllers
             }
             return Ok(listadoAutor);
         }
+        /*
         [HttpGet]
         [Route("GetById/{id}")]
         public IActionResult Get(int id)
@@ -42,6 +43,35 @@ namespace Ejercicio1.Controllers
             }
             return Ok(autor);
         }
+        */
+        
+        [HttpGet]
+        [Route("GetById/{id}")]
+        public IActionResult Get(int id)
+        {
+            var autorlibros = (from e in _autorContext.Autor
+                               join l in _autorContext.libro on e.id equals l.autorid
+                               where e.id == id
+                               select e).FirstOrDefault();
+
+            if (autorlibros == null)
+            {
+                return NotFound();
+            }
+
+            var libros = _autorContext.libro.Where(l => l.autorid == id).ToList();
+
+            var resultado = new
+            {
+                autor = autorlibros,
+                libros = libros
+            };
+
+            return Ok(resultado);
+        }
+        
+
+
         [HttpPost]
         [Route("Add")]
         public IActionResult GuardarEquipo([FromBody] Autor autor)
@@ -72,8 +102,8 @@ namespace Ejercicio1.Controllers
             {
                 return NotFound();
             }
-            autorActual.Nombre = autorModificar.Nombre;
-            autorActual.Nacionalidad = autorModificar.Nacionalidad;
+            autorActual.nombre = autorModificar.nombre;
+            autorActual.nacionalidad = autorModificar.nacionalidad;
 
             _autorContext.Entry(autorActual).State = EntityState.Modified;
             _autorContext.SaveChanges();

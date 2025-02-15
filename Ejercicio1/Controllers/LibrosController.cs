@@ -36,18 +36,18 @@ namespace Ejercicio1.Controllers
         {
             var Libro = (from e in _libroContext.libro
                          join A in _libroContext.Autor
-                         on e.AutorId equals A.id
-                         where e.Id == id
+                         on e.autorid equals A.id
+                         where e.id == id
                          select new
                          {
-                             e.Id,
-                             e.Titulo,
-                             e.AñoPublicacion,
-                             e.AutorId,
-                             e.CategoriaId,
-                             e.Resumen,
+                             e.id,
+                             e.titulo,
+                             e.aniopublicacion,
+                             e.autorid,
+                             e.categoriaid,
+                             e.resumen,
                              
-                             AutorNombre = A.Nombre
+                             AutorNombre = A.nombre
                          }).FirstOrDefault();
             if (Libro == null)
             {
@@ -79,17 +79,17 @@ namespace Ejercicio1.Controllers
         public IActionResult ActualizarEquipo(int id, [FromBody] Libro LibroModificar)
         {
             Libro? LibroActual = (from e in _libroContext.libro
-                                  where e.Id == id
+                                  where e.id == id
                                   select e).FirstOrDefault();
             if (LibroActual == null)
             {
                 return NotFound();
             }
-            LibroActual.Titulo = LibroModificar.Titulo;
-            LibroActual.AñoPublicacion = LibroModificar.AñoPublicacion;
-            LibroActual.AutorId = LibroModificar.AutorId;
-            LibroActual.CategoriaId = LibroModificar.CategoriaId;
-            LibroActual.Resumen = LibroModificar.Resumen;
+            LibroActual.titulo = LibroModificar.titulo;
+            LibroActual.aniopublicacion = LibroModificar.aniopublicacion;
+            LibroActual.autorid = LibroModificar.autorid;
+            LibroActual.categoriaid = LibroModificar.categoriaid;
+            LibroActual.resumen = LibroModificar.resumen;
 
             _libroContext.Entry(LibroActual).State = EntityState.Modified;
             _libroContext.SaveChanges();
@@ -100,7 +100,7 @@ namespace Ejercicio1.Controllers
         public IActionResult EliminarEquipo(int id)
         {
             Libro? Libro = (from e in _libroContext.libro
-                            where e.Id == id
+                            where e.id == id
                             select e).FirstOrDefault();
             if (Libro == null)
             {

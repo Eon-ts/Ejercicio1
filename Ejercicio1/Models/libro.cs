@@ -4,12 +4,12 @@ namespace Ejercicio1.Models
     public class Libro
     {
         [Key]
-        public int Id { get; set; }
-        public string Titulo { get; set; }
-        public int AñoPublicacion { get; set; }
-        public int AutorId { get; set; }
-        public int CategoriaId { get; set; }
-        public string? Resumen { get; set; }
+        public int id { get; set; }
+        public string titulo { get; set; }
+        public int aniopublicacion { get; set; }
+        public int autorid { get; set; }
+        public int categoriaid { get; set; }
+        public string? resumen { get; set; }
 
     }
 }

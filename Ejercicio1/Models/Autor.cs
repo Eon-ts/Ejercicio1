@@ -6,8 +6,8 @@ namespace Ejercicio1.Models
     {
         [Key]
         public int id { get; set; }
-        public string? Nombre { get; set; }
-        public string? Nacionalidad { get; set; }
+        public string? nombre { get; set; }
+        public string? nacionalidad { get; set; }
 
     }
 }
